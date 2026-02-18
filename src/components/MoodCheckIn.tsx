@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { getUserId } from "../lib/auth";
+import { saveMoodEntry, MoodEntry } from "../lib/db";
 
 const MOODS = [
   { emoji: "😊", label: "Great", value: 5, colorClass: "bg-mood-great/15 border-mood-great" },
@@ -9,13 +11,6 @@ const MOODS = [
   { emoji: "😢", label: "Struggling", value: 1, colorClass: "bg-mood-struggling/15 border-mood-struggling" },
 ] as const;
 
-type MoodEntry = {
-  mood: number;
-  label: string;
-  note: string;
-  date: string;
-};
-
 export default function MoodCheckIn() {
   const [selected, setSelected] = useState<number | null>(null);
   const [note, setNote] = useState("");
@@ -23,20 +18,25 @@ export default function MoodCheckIn() {
 
   const selectedMood = MOODS.find((m) => m.value === selected);
 
-  const handleLog = () => {
+  const handleLog = async () => {
     if (selected === null || !selectedMood) return;
 
+    const userId = getUserId();
+    if (!userId) return;
+
     const entry: MoodEntry = {
-      mood: selected,
+      mood_rating: selected,
       label: selectedMood.label,
-      note,
-      date: new Date().toISOString(),
+      notes: note,
+      logged_at: new Date().toISOString(),
     };
 
-    const existing: MoodEntry[] = JSON.parse(localStorage.getItem("mood_logs") || "[]");
-    existing.push(entry);
-    localStorage.setItem("mood_logs", JSON.stringify(existing));
-    setLogged(true);
+    try {
+      await saveMoodEntry(userId, entry);
+      setLogged(true);
+    } catch (error) {
+      console.error("Failed to save mood entry:", error);
+    }
   };
 
   const handleReset = () => {
