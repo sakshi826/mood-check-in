@@ -1,4 +1,4 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { getUserId } from "../lib/auth";
 import { saveMoodEntry } from "../lib/db";
@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
 const MOODS = [
-  { emoji: "😊", label: "Great", value: 5, colorClass: "bg-mood-great/15 border-mood-great text-mood-great" },
-  { emoji: "🙂", label: "Good", value: 4, colorClass: "bg-mood-good/15 border-mood-good text-mood-good" },
-  { emoji: "😐", label: "Okay", value: 3, colorClass: "bg-mood-okay/15 border-mood-okay text-mood-okay" },
-  { emoji: "😔", label: "Low", value: 2, colorClass: "bg-mood-low/15 border-mood-low text-mood-low" },
-  { emoji: "😫", label: "Struggling", value: 1, colorClass: "bg-mood-struggling/15 border-mood-struggling text-mood-struggling" },
+  { emoji: "ðŸ˜Š", label: "Great", value: 5, colorClass: "bg-mood-great/15 border-mood-great text-mood-great" },
+  { emoji: "ðŸ™‚", label: "Good", value: 4, colorClass: "bg-mood-good/15 border-mood-good text-mood-good" },
+  { emoji: "ðŸ˜", label: "Okay", value: 3, colorClass: "bg-mood-okay/15 border-mood-okay text-mood-okay" },
+  { emoji: "ðŸ˜”", label: "Low", value: 2, colorClass: "bg-mood-low/15 border-mood-low text-mood-low" },
+  { emoji: "ðŸ˜«", label: "Struggling", value: 1, colorClass: "bg-mood-struggling/15 border-mood-struggling text-mood-struggling" },
 ];
 
 const MoodCheckIn = () => {
@@ -70,7 +70,7 @@ const MoodCheckIn = () => {
       </div>
 
       <div className="grid grid-cols-5 gap-3">
-        {MOODS.map((mood) => (
+        {MOODS?.map((mood) => (
           <button
             key={mood.value}
             onClick={() => setSelected(mood.value)}
