@@ -13,7 +13,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/mood-check-in">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="*" element={<NotFound />} />
