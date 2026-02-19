@@ -101,7 +101,7 @@ const MoodCheckIn = () => {
         onClick={handleLog}
       >
         {isLoading ? "Saving..." : "Log Mood"}
-        {!isLoading && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
+        {!isLoading && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform"/>}
       </Button>
     </div>
   );

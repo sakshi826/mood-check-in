@@ -1,4 +1,4 @@
-import MoodCheckIn from "@/components/MoodCheckIn";
+﻿import MoodCheckIn from "@/components/MoodCheckIn";
 
 const Index = () => <MoodCheckIn />;
 
